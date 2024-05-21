@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}Submit Text{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <!-- Original Text Submission Form -->
+            <div class="card">
+                <div class="card-header">
+                    <h1>Submit Text</h1>
+                </div>
+                <div class="card-body">
+                    <form method="post" action="{{ url_for('text_management.submit_text') }}">
+                        <div class="form-group">
+                            <label for="textArea">Text</label>
+                            <textarea class="form-control" id="textArea" name="text" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+            <!-- Additional Text Input Form for Processing -->
+            <div class="card mt-3">
+                <div class="card-header">
+                    <h2>Do Similarity Search</h2>
+                </div>
+                <div class="card-body">
+                    <form method="post" action="{{ url_for('text_management.submit_text') }}"> <!-- Ensure the action is correct -->
+                        <div class="form-group">
+                            <label for="newTextField">Query</label>
+                            <input type="text" class="form-control" id="newTextField" name="newText" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </form>
+                </div>
+            </div>
+            <!-- Display Processing Results -->
+            {% if documents %}
+                <div class="mt-3">
+                    <h3>Processed Results:</h3>
+                    <ul>
+                        {% for doc in documents %}
+                            <li>{{ doc.page_content }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

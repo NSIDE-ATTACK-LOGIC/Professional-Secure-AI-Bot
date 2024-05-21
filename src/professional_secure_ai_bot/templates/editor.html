@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {% if mode == 'edit' %}Edit File: {{ filename }}{% else %}Browse Files{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="container mt-3">
+    {% if mode == 'browse' %}
+        <h2>Browse Files</h2>
+        <form action="{{ url_for('texteditor.editor') }}" method="post" class="mb-3">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="New file name" name="new_filename">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit">Add New File</button>
+                </div>
+            </div>
+        </form>
+        <ul class="list-group">
+            {% for file in files %}
+            <li class="list-group-item">
+                <a href="{{ url_for('texteditor.editor', filename=file) }}">{{ file }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    {% elif mode == 'edit' %}
+        <h2>Edit: {{ filename }}</h2>
+        <form action="{{ url_for('texteditor.save', filename=filename) }}" method="post">
+            <textarea name="content" class="form-control" rows="15">{{ content }}</textarea>
+            <button type="submit" class="btn btn-primary mt-2">Save</button>
+            <a href="{{ url_for('texteditor.editor') }}" class="btn btn-secondary mt-2">Back to Browse</a>
+        </form>
+    {% endif %}
+</div>
+{% endblock %}

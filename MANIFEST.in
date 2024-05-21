@@ -1,0 +1,4 @@
+recursive-include src/professional_secure_ai_bot/static *.png
+recursive-include src/professional_secure_ai_bot/templates *.html
+include src/professional_secure_ai_bot/tools/user_data/*.json
+include src/professional_secure_ai_bot/data_tools/*.txt

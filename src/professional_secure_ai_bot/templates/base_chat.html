@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block content %}
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<div class="container">
+    <div class="row justify-content-md-center mt-5">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h1>{{chatbot_title}}</h1>
+                </div>
+                <div class="card-body">
+                    <div id="chatArea" class="mb-3"
+                        style="height: 300px; overflow-y: scroll; border: 1px solid #ccc; padding: 10px;"></div>
+                    <input type="text" id="userInput" class="form-control mb-2"
+                        placeholder="Type your question here...">
+                    <button id="sendButton" class="btn btn-primary">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function() {
+        function sendMessage() {
+            var userQuestion = $('#userInput').val();
+            if (!userQuestion) {
+                alert('Please type a question.');
+                return;
+            }
+            $('#chatArea').append('<div><strong>You:</strong> ' + userQuestion + '</div>');
+
+            $.ajax({
+                url: '{{ url_for(ajax_url) }}',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({ question: userQuestion }),
+                dataType: 'json',
+                success: function(data) {
+                    $('#chatArea').append('<div><strong>Bot:</strong> ' + data.answer + '</div>');
+                    $('#chatArea').scrollTop($('#chatArea')[0].scrollHeight);
+                },
+                error: function() {
+                    $('#chatArea').append('<div><strong>Bot:</strong> Sorry, I am unable to process your request right now.</div>');
+                }
+            });
+
+            $('#userInput').val('');
+        }
+
+        $('#sendButton').click(function() {
+            sendMessage();
+        });
+
+        $('#userInput').keypress(function(e) {
+            if (e.which == 13) { // Enter key = keycode 13
+                sendMessage();
+                e.preventDefault(); // Prevent form submission and page reload
+            }
+        });
+    });
+</script>
+{% endblock %}

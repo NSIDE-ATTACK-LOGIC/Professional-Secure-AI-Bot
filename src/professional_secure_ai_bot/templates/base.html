@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %} - My Chatbot</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">
+            <img src="{{ url_for('static', filename='robot.png') }}" alt="Robot Icon" style="width: 30px; height: auto; margin-right: 10px;">My Chatbot
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/rag-chatbot/chat">RAG Chatbot</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/user_manage_chatbot/chat">GDPR Chatbot</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/web-assistant/chat">Web & Files Chatbot</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/xss">XSS Demo</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/text-management/submit-text">Manage Vector DB</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/text-editor/browse">Browse Text Files</a>
+                </li>
+
+                <!-- Add more menu items here -->
+            </ul>
+        </div>
+    </nav>
+    {% block content %}
+    {% endblock %}
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

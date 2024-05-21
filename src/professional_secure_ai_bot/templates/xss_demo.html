@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}XSS Demo{% endblock %}
+
+{% block content %}
+<!-- WARNING: The following template intentionally introduces an XSS vulnerability for educational purposes. Never deploy this in a production environment. -->
+<div class="container py-5">
+    <h1 class="mb-4">XSS Demo</h1>
+    <form action="/xss" method="post">
+        <div class="mb-3">
+            <label for="userInput" class="form-label">Enter your input:</label>
+            <input type="text" class="form-control" id="userInput" name="user_input" placeholder="Ask me anything..." required>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    {% if chatbot_response %}
+    <div class="mt-4">
+        <h2>Chatbot Response</h2>
+        <p><strong>You:</strong> {{ user_input }}</p>
+        <!-- Intentionally vulnerable to XSS -->
+        <p><strong>Chatbot:</strong> {{ chatbot_response | safe }}</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
