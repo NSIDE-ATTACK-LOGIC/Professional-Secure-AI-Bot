@@ -27,7 +27,7 @@ It provides an easy-to-use web interface that makes it suitable for showcasing t
    Note: The application is not independent from the working directory.
 6. Hack away!
 
-After the successful installation, you will se the following webpage at http://127.0.0.1:
+After the successful installation, you will se the following webpage at http://127.0.0.1:5000
 
 ![image](https://github.com/NSIDE-ATTACK-LOGIC/Professional-Secure-AI-Bot/assets/170079892/7fdccbde-0d6b-4390-afc5-606d831277c0)
 
