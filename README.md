@@ -16,7 +16,7 @@ It provides an easy-to-use web interface that makes it suitable for showcasing t
 3. Run `docker run -p 5000:5000 secure-ai-bot`
 4. Hack away!
 
-## Getting Started -Local Installation
+## Getting Started - Local Installation
 
 1. Clone this repository.
 2. Go to the cloned directory and run `pip install .`.
